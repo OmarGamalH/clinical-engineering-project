@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/dialog"
 import { useAppointments } from "@/lib/contexts/appointment-context"
 import { doctors, specializations } from "@/lib/mock-data/doctors"
-import { useDashboard } from "@/app/dashboard/layout"
+import { useDashboard } from "./layout"
 import {
   Calendar,
   Clock,
