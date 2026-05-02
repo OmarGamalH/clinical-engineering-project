@@ -6,6 +6,7 @@ import { Sidebar, MobileSidebar } from "@/components/dashboard/sidebar"
 import { AuthProvider } from "@/lib/contexts/auth-context"
 import { DeviceProvider } from "@/lib/contexts/device-context"
 import { SecurityProvider } from "@/lib/contexts/security-context"
+import { AppointmentProvider } from "@/lib/contexts/appointment-context"
 import type { User } from "@/lib/types"
 
 interface DashboardContextValue {
@@ -83,7 +84,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     <AuthProvider>
       <DeviceProvider>
         <SecurityProvider>
-          <DashboardLayoutContent>{children}</DashboardLayoutContent>
+          <AppointmentProvider>
+            <DashboardLayoutContent>{children}</DashboardLayoutContent>
+          </AppointmentProvider>
         </SecurityProvider>
       </DeviceProvider>
     </AuthProvider>

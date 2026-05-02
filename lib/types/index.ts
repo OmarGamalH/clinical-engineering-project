@@ -1,5 +1,5 @@
 // User and Authentication Types
-export type UserRole = "admin" | "clinician" | "technician"
+export type UserRole = "admin" | "clinician" | "technician" | "doctor" | "patient"
 
 export interface User {
   id: string
@@ -7,6 +7,10 @@ export interface User {
   role: UserRole
   department: string
   avatar?: string
+  email?: string
+  phone?: string
+  specialization?: string // For doctors
+  dateOfBirth?: string // For patients
 }
 
 export interface Permission {
@@ -17,6 +21,73 @@ export interface Permission {
   canViewSecurity: boolean
   canManageSecurity: boolean
   canViewAuditLogs: boolean
+  canViewAppointments: boolean
+  canManageAppointments: boolean
+  canBookAppointments: boolean
+}
+
+// Appointment Types
+export type AppointmentStatus = "available" | "booked" | "completed" | "cancelled"
+
+export interface Appointment {
+  id: string
+  doctorId: string
+  doctorName: string
+  specialization: string
+  patientId?: string
+  patientName?: string
+  date: string
+  time: string
+  duration: number // in minutes
+  status: AppointmentStatus
+  department: string
+  roomNumber: string
+  notes?: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Doctor {
+  id: string
+  name: string
+  email: string
+  phone: string
+  specialization: string
+  department: string
+  yearsOfExperience: number
+  education: string
+  avatar?: string
+  availability: DoctorAvailability[]
+  rating: number
+  totalPatients: number
+}
+
+export interface DoctorAvailability {
+  dayOfWeek: number // 0-6, Sunday-Saturday
+  startTime: string
+  endTime: string
+}
+
+export interface PatientProfile {
+  id: string
+  userId: string
+  name: string
+  email: string
+  phone: string
+  dateOfBirth: string
+  gender: "male" | "female" | "other"
+  bloodType?: string
+  allergies?: string[]
+  emergencyContact?: {
+    name: string
+    phone: string
+    relationship: string
+  }
+  medicalHistory?: string[]
+  insuranceInfo?: {
+    provider: string
+    policyNumber: string
+  }
 }
 
 // Device Types
