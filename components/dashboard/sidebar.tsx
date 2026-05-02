@@ -15,6 +15,7 @@ import {
   Building2,
   Menu,
   X,
+  CalendarCheck,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -38,6 +39,11 @@ const navigation = [
     name: "Device Monitoring",
     href: "/dashboard/devices",
     icon: Monitor,
+  },
+  {
+    name: "Appointments",
+    href: "/dashboard/appointments",
+    icon: CalendarCheck,
   },
   {
     name: "EHR Integration",
